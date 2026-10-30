@@ -31,7 +31,7 @@ const steps=[
 steps.forEach((s,i)=>{let o=document.createElement('option');o.value=i;o.textContent=(i+1)+' · '+s[0];select.append(o)});
 let step=7,state=null,raf=0,timer=0,playing=false,mode='steps';
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function target(i){return {rodA:i>=1?1:0,rodY:i>=15?355:0,paperA:i>=2?1:0,paperY:i===16?90:0,jawA:i>=3?1:0,jawX:i===3||i>=14?80:0,jawY:i===3||i>=13?17:0,sleeveA:i>=5&&i<=12?1:0,sleeveY:i>=12?250:0,productA:i>=7?1:0,productH:i<=9?188:160,productY:i===16?90:0,pistonA:i>=9&&i<=11?1:0,pistonY:i===10?0:i===9?86:280,funnelA:i>=6&&i<=8?1:0,funnelX:0,funnelY:i===8?150:0}}
+function target(i){return {rodA:i>=1?1:0,rodY:i>=15?355:0,paperA:i>=2?1:0,paperY:i===16?90:0,jawA:i>=3?1:0,jawX:i===3||i>=14?80:0,jawY:i===3||i>=13?17:0,sleeveA:i>=5&&i<=12?1:0,sleeveY:i>=12?250:0,productA:i>=7?1:0,productH:i<=9?188:160,productY:i===16?90:0,pistonA:i>=9&&i<=11?1:0,pistonY:i===10?0:i===9?86:280,funnelA:i>=6&&i<=8?1:0,funnelX:0,funnelY:i>=8?150:0}}
 function rect(x,y,w,h,fill,extra=''){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+fill+'" '+extra+'/>'}
 function label(x,y,s,extra=''){return '<text x="'+x+'" y="'+y+'" '+extra+'>'+s+'</text>'}
 function draw(s){
