@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">El Turro R3: palito central y émbolo pasante</title><desc id="desc">Base con alojamiento central del palito de 2 mm, ranura FEP independiente y asiento exterior. Émbolo con un agujero axial pasante de 2.2 mm en cuerpo y mango.</desc>
+<rect width="1200" height="760" fill="#f5f7fa"/><g font-family="Arial,sans-serif" fill="#20334a">
+<text x="48" y="55" font-size="16" fill="#155dc0">EL TURRO · REVISIÓN R3</text><text x="48" y="104" font-size="34" font-weight="bold">Un eje central. Dos funciones separadas.</text>
+<text x="48" y="142" font-size="18">El palito forma el canal; el FEP envuelve el producto.</text>
+<g transform="translate(270 345)"><circle r="142" fill="#d9e0e8" stroke="#4c6179" stroke-width="2"/><circle r="109" fill="none" stroke="#4c6179" stroke-width="10"/><circle r="66" fill="none" stroke="#d98a16" stroke-width="9"/><circle r="13" fill="white" stroke="#4c6179" stroke-width="2"/><circle r="11.8" fill="#8555c9"/></g>
+<g fill="none" stroke-width="2"><path d="M283 345H463V265" stroke="#8555c9"/><path d="M319 389L463 420" stroke="#d98a16"/><path d="M198 265L92 220" stroke="#4c6179"/></g>
+<text x="48" y="205" font-size="18">Asiento de mitades</text><text x="425" y="230" font-size="19" font-weight="bold">Palito Ø2.0 mm</text><text x="425" y="253" font-size="15">Alojamiento centrado</text><text x="425" y="444" font-size="19" font-weight="bold">Ranura anular FEP</text><text x="425" y="469" font-size="15">No se une al orificio central</text><text x="270" y="531" font-size="19" text-anchor="middle">BASE · VISTA SUPERIOR</text>
+<g transform="translate(850 220)"><path d="M-86 0H-9V260H-49V42H-86ZM9 0H86V42H49V260H9Z" fill="#d9e0e8" stroke="#4c6179" stroke-width="2"/><rect x="-8" y="-34" width="16" height="330" rx="3" fill="#8555c9"/><path d="M-9 -10V278M9 -10V278" stroke="#155dc0" stroke-width="1.5" fill="none"/><path d="M20 114H135" stroke="#155dc0" fill="none"/></g>
+<text x="982" y="319" font-size="18" font-weight="bold">Ø2.2 mm</text><text x="982" y="344" font-size="15">Pasante</text><text x="982" y="366" font-size="15">cuerpo + mango</text>
+<text x="850" y="560" font-size="19" text-anchor="middle">ÉMBOLO · SECCIÓN AXIAL</text><text x="850" y="590" font-size="16" text-anchor="middle">0.2 mm de holgura diametral nominal</text>
+<path d="M48 637H1152" stroke="#c5d0dc"/><text x="48" y="678" font-size="17">5 piezas impresas + palito Ø2 mm + lámina FEP. El producto objetivo sigue siendo Ø10 × 90 mm.</text><text x="48" y="714" font-size="15" fill="#52647a">Diagrama conceptual. El espesor del FEP y los ajustes de impresión deben comprobarse antes de fabricar.</text>
+</g></svg>
+
