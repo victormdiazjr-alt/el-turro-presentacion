@@ -1,0 +1,82 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>El Turro · Palito Ø2 y émbolo Ø2.2</title><style>
+*{box-sizing:border-box}body{margin:0;padding:22px;font-family:Arial,sans-serif;color:#1d2939;background:#f8fafc}h1{font-size:23px;margin:0 0 10px}p{line-height:1.5}nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}button,select{font:inherit;border:1px solid #b6c5d7;padding:10px 13px;border-radius:7px;background:white;color:#18324f;cursor:pointer}button:disabled{opacity:.4;cursor:default}button:focus-visible,select:focus-visible{outline:3px solid #1f69d6;outline-offset:2px}#play{background:#165fc3;color:white}#explain{min-height:54px;font-size:15px;margin:0}svg{display:block;width:100%;max-width:760px;margin:auto;height:auto}svg text{font-family:Arial,sans-serif;fill:#172c44;font-size:15px}.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px}.legend span:before{content:"";display:inline-block;width:10px;height:10px;background:var(--c);margin-right:6px;border-radius:50%}.note{font-size:12px;color:#516277;margin-bottom:0}@media(max-width:500px){body{padding:12px}h1{font-size:20px}button,select{font-size:14px}#explain{min-height:85px}}
+</style></head><body>
+<h1>Embudo para llenar. Émbolo para comprimir.</h1><p>El embudo sostiene el FEP abierto y se retira antes de introducir el émbolo. El palito de Ø2 mm queda centrado.</p>
+<nav aria-label="Controles"><button id="prev">Anterior</button><button id="play">Reproducir</button><button id="next">Siguiente</button><select id="step" aria-label="Seleccionar paso"></select><button id="assembled">Ensamblado</button><button id="exploded">Despiece</button></nav>
+<p id="explain" aria-live="polite"></p><svg id="scene" viewBox="0 0 680 660" role="img" aria-label="Corte del molde con palito central y émbolo hueco"></svg>
+<div class="legend"><span style="--c:#8493a5">Base y mitades</span><span style="--c:#206adb">Camisa</span><span style="--c:#df8c16">FEP</span><span style="--c:#8555c9">Palito Ø2</span><span style="--c:#45856a">Producto</span><span style="--c:#009eaa">Embudo desmontable</span></div>
+<p class="note">Sección explicativa, no escala de fabricación. La ranura, las holguras y el ajuste del papel requieren prueba física. Seis piezas impresas + palito + FEP. El cuello se ajustará al espesor y solape reales de la lámina.</p>
+<script>
+(()=>{
+const $=id=>document.getElementById(id),svg=$('scene'),select=$('step'),desc=$('explain'),play=$('play');
+const steps=[
+['Base','La base separa tres funciones: alojamiento central del palito, ranura anular del FEP y asiento exterior de las mitades.'],
+['Colocar palito','Introduce el palito de Ø2.0 mm en el alojamiento central de la base. Queda sujeto verticalmente.'],
+['Colocar FEP','Enrolla el FEP alrededor del palito y asienta su borde inferior en la ranura circular. El palito queda dentro del rollo.'],
+['Acercar mitades','Acerca las dos mitades por fuera del FEP, sin pellizcar la lámina.'],
+['Asentar mitades','Baja las mitades al asiento exterior de la base. El FEP y el palito conservan su posición.'],
+['Cerrar camisa','Baja la camisa alrededor de las mitades para mantenerlas unidas.'],
+['Colocar embudo','Desliza el embudo por encima del palito. Su cuello entra dentro del FEP; el reborde apoya en las mitades y limita la entrada. La lámina queda sujeta entre cuello y molde.'],
+['Llenar','Vierte por la boca ancha, alrededor del palito. El cuello mantiene el FEP abierto. Deja libre el cuello del embudo para retirarlo sin arrastrar el producto.'],
+['Retirar embudo','Sostén el molde y retira el embudo hacia arriba, hasta superar la punta del palito. El FEP queda dentro de las mitades cerradas. Después se introduce el émbolo.'],
+['Enhebrar émbolo','Alinea el orificio pasante de Ø2.2 mm con el palito de Ø2.0 mm e introduce el émbolo por arriba.'],
+['Comprimir','El émbolo se desliza alrededor del palito: su cuerpo y su mango tienen un paso continuo de Ø2.2 mm.'],
+['Retirar émbolo','Desliza el émbolo hacia arriba por el palito y sácalo completamente.'],
+['Retirar camisa','Levanta la camisa hasta liberar las mitades. El palito continúa centrado.'],
+['Liberar mitades','Levanta ligeramente las mitades para sacarlas del asiento de la base.'],
+['Separar mitades','Separa las mitades lateralmente. El producto permanece envuelto en FEP, con el palito todavía en el centro.'],
+['Retirar palito','Sostén el producto envuelto y retira el palito axialmente. Queda el canal central.'],
+['Sacar envuelto','Levanta el producto con su FEP. El borde de la lámina sale de la ranura; el cilindro conserva el canal central.']
+];
+steps.forEach((s,i)=>{let o=document.createElement('option');o.value=i;o.textContent=(i+1)+' · '+s[0];select.append(o)});
+let step=7,state=null,raf=0,timer=0,playing=false,mode='steps';
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function target(i){return {rodA:i>=1?1:0,rodY:i>=15?355:0,paperA:i>=2?1:0,paperY:i===16?90:0,jawA:i>=3?1:0,jawX:i===3||i>=14?80:0,jawY:i===3||i>=13?17:0,sleeveA:i>=5&&i<=12?1:0,sleeveY:i>=12?250:0,productA:i>=7?1:0,productH:i<=9?188:160,productY:i===16?90:0,pistonA:i>=9&&i<=11?1:0,pistonY:i===10?0:i===9?86:280,funnelA:i>=6&&i<=8?1:0,funnelX:0,funnelY:i===8?150:0}}
+function rect(x,y,w,h,fill,extra=''){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+fill+'" '+extra+'/>'}
+function label(x,y,s,extra=''){return '<text x="'+x+'" y="'+y+'" '+extra+'>'+s+'</text>'}
+function draw(s){
+state=s;const c=272,b=488,H=220,fg='#394b61',grey='#d7dfe8',purple='#8555c9',orange='#d98a16';
+let a='<title>'+ (mode==='exploded'?'Despiece':steps[step][0]) +'</title><desc>'+desc.textContent+'</desc>';
+a+=label(24,27,'CORTE EXPLICATIVO · R5','font-weight="bold"')+label(24,52,'Palito Ø2.0 mm · paso del émbolo Ø2.2 mm');
+a+='<line x1="'+c+'" y1="95" x2="'+c+'" y2="538" stroke="#aab9cb" stroke-dasharray="4 6"/>';
+// Base has a central blind locating bore, annular FEP groove and outside jaw seat.
+a+='<path d="M152 528V480H214V493H220V488H238V494H242V488H265V501H279V488H302V494H306V488H324V493H330V480H392V528Z" fill="'+grey+'" stroke="'+fg+'" stroke-width="1.5"/>';
+a+=rect(238,488,4,6,orange)+rect(302,488,4,6,orange)+label(c,551,'01 · Base estable','text-anchor="middle"');
+if(s.jawA>.01){a+='<g opacity="'+s.jawA+'">'+rect(c-52-s.jawX,b-H-s.jawY,18,H,grey,'stroke="'+fg+'" rx="3"')+rect(c+34+s.jawX,b-H-s.jawY,18,H,grey,'stroke="'+fg+'" rx="3"')+label(c-43-s.jawX,b-100-s.jawY,'02','text-anchor="middle"')+label(c+43+s.jawX,b-100-s.jawY,'03','text-anchor="middle"')+'</g>'}
+if(s.sleeveA>.01){a+='<g opacity="'+s.sleeveA+'">'+rect(c-67,b-H-s.sleeveY,12,H,'#206adb','rx="3"')+rect(c+55,b-H-s.sleeveY,12,H,'#206adb','rx="3"')+label(c-82,b-90-s.sleeveY,'04','text-anchor="middle"')+'</g>'}
+if(s.productA>.01){a+='<g opacity="'+s.productA+'">'+rect(c-29,b-s.productH-s.productY,22.6,s.productH,'#8fbaa6')+rect(c+6.4,b-s.productH-s.productY,22.6,s.productH,'#8fbaa6')+'</g>'}
+if(s.paperA>.01){a+='<g opacity="'+s.paperA+'" stroke="'+orange+'" stroke-width="3"><path d="M240,'+(b+4-s.paperY)+'V'+(b-H-8-s.paperY)+'M304,'+(b+4-s.paperY)+'V'+(b-H-8-s.paperY)+'"/></g>'}
+if(s.funnelA>.01){a+='<g data-part="funnel" opacity="'+s.funnelA+'" transform="translate('+(c+s.funnelX)+' '+(b-H-s.funnelY)+')"><path d="M-76 -74L-29 -6V14H-23V-8L-68 -74ZM76 -74L29 -6V14H23V-8L68 -74Z" fill="#009eaa" stroke="'+fg+'"/><path d="M-54 -8H-29V0H-54ZM54 -8H29V0H54Z" fill="#009eaa" stroke="'+fg+'"/></g>';a+=label(c+s.funnelX-90,b-H-35-s.funnelY,'06','text-anchor="end"');}
+if(s.pistonA>.01){const tip=b-160-s.pistonY;a+='<g opacity="'+s.pistonA+'">';
+// Both piston halves AND handle halves leave the same continuous 2.2 mm bore.
+a+=rect(c-28,tip-100,20.96,100,grey,'stroke="'+fg+'" rx="1"')+rect(c+7.04,tip-100,20.96,100,grey,'stroke="'+fg+'" rx="1"');
+a+=rect(c-48,tip-114,40.96,14,grey,'stroke="'+fg+'" rx="2"')+rect(c+7.04,tip-114,40.96,14,grey,'stroke="'+fg+'" rx="2"');
+a+=label(c+63,tip-102,'05')+'</g>'}
+if(s.rodA>.01){a+='<g opacity="'+s.rodA+'">'+rect(c-6.4,164-s.rodY,12.8,337,purple,'rx="2"')+'</g>'}
+a+=label(427,148,'PALITO','font-weight="bold"')+label(427,172,'Ø2.0 mm');
+a+='<path d="M419 160H304L279 183" fill="none" stroke="'+purple+'"/>';
+a+=label(427,265,'ÉMBOLO','font-weight="bold"')+label(427,289,'Orificio Ø2.2 mm')+label(427,310,'pasante por el mango');
+a+='<circle cx="477" cy="359" r="34" fill="'+grey+'" stroke="'+fg+'"/><circle cx="477" cy="359" r="7.04" fill="#fff" stroke="'+fg+'"/><circle cx="477" cy="359" r="6.4" fill="'+purple+'"/>';
+a+=label(427,416,'Holgura nominal:')+label(427,438,'0.2 mm de diámetro')+label(427,460,'0.1 mm por lado');
+a+=label(24,601,mode==='exploded'?'6 piezas impresas + FEP + palito central':'El canal central lo forma el palito, no el émbolo.','font-weight="bold"');
+a+=label(24,629,'Retira el embudo antes de introducir el émbolo.');
+svg.innerHTML=a;
+}
+function stop(){playing=false;clearTimeout(timer);play.textContent='Reproducir'}
+function go(i,exploded=false){
+mode=exploded?'exploded':'steps';step=Math.max(0,Math.min(steps.length-1,i));select.value=step;
+desc.textContent=exploded?'Despiece en corte: base, dos mitades, camisa, émbolo hueco y embudo desmontable. El FEP y el palito central son elementos adicionales.':steps[step][1];
+$('prev').disabled=step===0;$('next').disabled=step===steps.length-1;
+let to=target(step);if(exploded)to={...target(10),productA:0,jawX:80,jawY:17,sleeveY:250,pistonY:86,funnelA:1,funnelX:-165,funnelY:0};
+const from=state||to,start=performance.now();cancelAnimationFrame(raf);
+function tick(now){let t=reduced?1:Math.min(1,(now-start)/800);t=t*t*(3-2*t);let s={};Object.keys(to).forEach(k=>s[k]=from[k]+(to[k]-from[k])*t);draw(s);if(t<1)raf=requestAnimationFrame(tick)}
+raf=requestAnimationFrame(tick);
+}
+function advance(){if(!playing)return;if(step>=16){stop();return}go(step+1);timer=setTimeout(advance,3800)}
+$('prev').onclick=()=>{stop();go(step-1)};$('next').onclick=()=>{stop();go(step+1)};select.onchange=()=>{stop();go(Number(select.value))};
+$('assembled').onclick=()=>{stop();go(10)};$('exploded').onclick=()=>{stop();go(10,true)};
+play.onclick=()=>{if(playing){stop();return}playing=true;play.textContent='Pausar';go(0);timer=setTimeout(advance,3800)};
+window.addEventListener('pagehide',stop);go(7);
+})();
+</script></body></html>
+

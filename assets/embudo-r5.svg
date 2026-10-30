@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="t d">
+<title id="t">Embudo desmontable que sujeta el FEP: El Turro R5</title><desc id="d">Sección conceptual: cuello del embudo dentro de la lámina FEP, con mitades por fuera, reborde de apoyo y palito central. El FEP se asienta en su ranura de la base. Se retira el embudo antes de comprimir.</desc>
+<rect width="1200" height="760" fill="#f5f7fa"/><g font-family="Arial,sans-serif" fill="#20334a">
+<text x="45" y="50" font-size="16" fill="#155dc0">EL TURRO · R5 · SEXTA PIEZA</text><text x="45" y="93" font-size="32" font-weight="bold">El embudo sostiene el FEP abierto.</text><text x="45" y="126" font-size="18">Sección explicativa del llenado. El émbolo se utiliza después de retirar el embudo.</text>
+<path d="M245 648V607H319V624H337V617H383V629H389V617H431V634H449V617H491V629H497V617H543V624H561V607H635V648Z" fill="#d7dfe8" stroke="#52647a" stroke-width="2"/>
+<rect x="319" y="357" width="64" height="260" fill="#d7dfe8" stroke="#52647a"/><rect x="497" y="357" width="64" height="260" fill="#d7dfe8" stroke="#52647a"/>
+<rect x="298" y="357" width="17" height="260" fill="#206adb" rx="3"/><rect x="565" y="357" width="17" height="260" fill="#206adb" rx="3"/>
+<path d="M386 629V342Q386 331 379 326M494 629V342Q494 331 501 326" stroke="#df8c16" stroke-width="4" fill="none"/>
+<path d="M282 190L390 344V390H398V339L294 190ZM598 190L490 344V390H482V339L586 190Z" fill="#009eaa" stroke="#32575c" stroke-width="2"/>
+<path d="M319 348H390V357H319ZM490 348H561V357H490Z" fill="#009eaa" stroke="#32575c"/>
+<rect x="433" y="166" width="14" height="468" rx="2" fill="#8555c9"/>
+<path d="M602 193H704M562 352H704M495 384H704M499 449H704M499 625H704" fill="none" stroke="#8192a5" stroke-width="1.5"/>
+<text x="723" y="191" font-size="20" font-weight="bold">Boca ancha y redondeada</text><text x="723" y="218" font-size="16">Paso abierto alrededor del palito Ø2 mm.</text>
+<text x="723" y="335" font-size="20" font-weight="bold">Reborde de apoyo</text><text x="723" y="360" font-size="16">Descansa en las mitades; limita la entrada.</text>
+<text x="723" y="396" font-size="20" font-weight="bold">Cuello corto dentro del FEP</text><text x="723" y="421" font-size="16">La pared del molde lo sostiene por fuera.</text>
+<text x="723" y="465" font-size="20" font-weight="bold">Lámina flexible FEP</text><text x="723" y="490" font-size="16">Naranja solo para identificarla en el corte.</text>
+<text x="723" y="615" font-size="20" font-weight="bold">Ranura circular inferior</text><text x="723" y="640" font-size="16">Separada del alojamiento central del palito.</text>
+<text x="43" y="278" font-size="17" font-weight="bold">06 · EMBUDO</text><text x="43" y="305" font-size="16">Desmontable</text><text x="43" y="335" font-size="16">Sin tapa central</text><text x="43" y="362" font-size="16">Sin roscas</text>
+<path d="M45 681H1155" stroke="#c5d0dc"/><text x="45" y="711" font-size="17">6 piezas impresas + palito Ø2 mm + FEP · Émbolo Ø2.2 mm pasante, fuera durante el llenado.</text>
+<text x="45" y="740" font-size="14" fill="#52647a">Geometría conceptual, sin escala. Ajustar cuello, solape y longitud del FEP con el material real antes de fabricar.</text></g></svg>
